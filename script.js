@@ -45,9 +45,6 @@ function creatDivs(){
         const div = document.createElement("div");
         div.setAttribute("class","item")
         playground.appendChild(div);
-        // change color of the div in hover
-        // div.addEventListener("mouseover", e => { e.target.style.cssText = `background-color: ${randomColor()};` })
-
         // set the width and height of the grid items
         playground.style.cssText ="grid-template-columns: repeat(auto-fill, minmax("+ width/nos +"px, 1fr)); grid-template-rows: repeat(auto-fill, minmax("+height/nos+"px, 1fr));"
 
@@ -74,8 +71,16 @@ function emtyPlayGround(){
 // the new button 
 btnNew.addEventListener("click", () => {
     nos = prompt("Enter a number between 2 and 20");
+    if(nos === null){
+        nos = 10;
+    }
     emtyPlayGround();
-    creatDivs();   
+    creatDivs();
+    random = true;
+    red = false;
+    yellow = false;
+    eraser = false;
+    setColor.textContent = "Random"
 });
 // the reset button
 btnReset.addEventListener("click", () =>{
@@ -83,6 +88,11 @@ btnReset.addEventListener("click", () =>{
     items.forEach(item => {
         item.style.backgroundColor="";
     })
+    random = true;
+    red = false;
+    yellow = false;
+    eraser = false;
+    setColor.textContent = "Random"
 })
 
 // set a random color function
