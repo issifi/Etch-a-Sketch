@@ -70,9 +70,14 @@ function emtyPlayGround(){
 // buttons event
 // the new button 
 btnNew.addEventListener("click", () => {
-    nos = prompt("Enter a number between 2 and 20");
+    nos = prompt("Enter a number between 2 and 20",10);
     if(nos === null){
         nos = 10;
+    }
+    if (nos === "") {
+        while (nos === "" ) {
+            nos = prompt("Please enter a number between 2 and 20",10);
+        }
     }
     emtyPlayGround();
     creatDivs();
