@@ -1,6 +1,41 @@
 const playground = document.querySelector("#playground");
 const btnNew = document.querySelector("#btnNew");
 const btnReset = document.querySelector("#btnReset");
+const setColor = document.querySelector("#setColor");
+
+let random;
+let red;
+let yellow;
+let eraser;
+
+document.getElementById("random").addEventListener("click", () => {
+    random = true;
+    red = false;
+    yellow = false;
+    eraser = false;
+    setColor.textContent = "Random"
+})
+document.getElementById("red").addEventListener("click", () => {
+    random = false;
+    red = true;
+    yellow = false;
+    eraser = false;
+    setColor.textContent = "Red"
+})
+document.getElementById("yellow").addEventListener("click", () => {
+    random = false;
+    red = false;
+    yellow = true;
+    eraser = false;
+    setColor.textContent = "Yellow"
+})
+document.querySelector("#eraser").addEventListener("click", () => {
+    random = false;
+    red = false;
+    yellow = false;
+    eraser = true;
+    setColor.textContent = "Eraser";
+})
 
 let nos = 10;
 function creatDivs(){
@@ -10,9 +45,25 @@ function creatDivs(){
         const div = document.createElement("div");
         div.setAttribute("class","item")
         playground.appendChild(div);
-        div.addEventListener("mouseover", e => { e.target.style.cssText = `background-color: #${randomColor()};` })
+        // change color of the div in hover
+        // div.addEventListener("mouseover", e => { e.target.style.cssText = `background-color: ${randomColor()};` })
+
+        // set the width and height of the grid items
         playground.style.cssText ="grid-template-columns: repeat(auto-fill, minmax("+ width/nos +"px, 1fr)); grid-template-rows: repeat(auto-fill, minmax("+height/nos+"px, 1fr));"
+
     }
+    const divItem = document.querySelectorAll(".item");
+    divItem.forEach(item => item.addEventListener("mouseover",() => {
+        if (random) {
+            item.style.backgroundColor = `${randomColor()}`;
+        }else if (red) {
+            item.style.backgroundColor = `red`;
+        }else if (yellow) {
+            item.style.backgroundColor = `yellow`;
+        }else if (eraser) {
+            item.removeAttribute("style");
+        }
+    }))
 
 }
 creatDivs();
@@ -35,4 +86,11 @@ btnReset.addEventListener("click", () =>{
 })
 
 // set a random color function
-let randomColor = () => Math.floor(Math.random()*16777215).toString(16);
+let randomColor = () => {
+    return "#" + Math.floor(Math.random()*16777215).toString(16);
+} 
+
+random = true;
+red = false;
+yellow = false;
+eraser = false;

@@ -9,7 +9,7 @@ h1{
     width: 200px;
 }
 .buttons button{
-    font-size: 20px;
+    font-size: 16px;
     padding: 10px 20px;
     background-color: #9c9fac;
     display: block;
@@ -38,4 +38,7 @@ button:hover{
 .item{
     background-color: rgb(53, 51, 50);
     border: 1px solid black;
+}
+.item:hover{
+    cursor: crosshair;
 }
